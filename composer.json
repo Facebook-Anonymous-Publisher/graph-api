@@ -1,6 +1,6 @@
 {
   "name": "facebook-anonymous-publisher/graph-api",
-  "description": "PHP Graph Api",
+  "description": "PHP facebook graph api helper.",
   "type": "library",
   "license": "MIT",
   "authors": [
