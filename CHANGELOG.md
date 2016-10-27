@@ -1,4 +1,4 @@
-# Changelog for Graph Api
+# Changelog for Graph API
 
 ## dev
 
