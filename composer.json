@@ -1,6 +1,6 @@
 {
   "name": "facebook-anonymous-publisher/graph-api",
-  "description": "PHP facebook graph api helper.",
+  "description": "Facebook graph api wrapper.",
   "type": "library",
   "license": "MIT",
   "authors": [
@@ -11,13 +11,13 @@
   ],
   "require": {
     "php": ">=5.6",
-    "facebook/graph-sdk": "^5.4",
-    "guzzlehttp/guzzle": "^5.3"
+    "facebook/graph-sdk": "^5.5",
+    "guzzlehttp/guzzle": "^6.2"
   },
   "require-dev": {
-    "codeclimate/php-test-reporter": "^0.3",
+    "codeclimate/php-test-reporter": "^0.4",
     "mockery/mockery": "^0.9",
-    "phpunit/phpunit": "^5.5"
+    "phpunit/phpunit": "^5.7"
   },
   "autoload": {
     "psr-4": {
