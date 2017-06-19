@@ -104,7 +104,7 @@ class GraphApi
                 ])
                 ->getDecodedBody();
 
-            $images["attached_media[{$index}]"] = "{\"media_fbid\":\"{$response['id']}\"}";
+            $images["attached_media[{$index}]"] = sprintf('{"media_fbid":"%d"}', $response['id']);
         }
 
         return $images;
