@@ -67,6 +67,50 @@ class GraphApi
     }
 
     /**
+     * Create multiple photos.
+     *
+     * @param array $sources
+     * @param null|string $caption
+     *
+     * @return $this
+     */
+    public function photos(array $sources, $caption = null)
+    {
+        $images = $this->unpublishedPhotos($sources);
+
+        $this->response = $this->fb->post('/me/feed', array_merge([
+            'message' => $caption,
+        ], $images));
+
+        return $this;
+    }
+
+    /**
+     * Create unpublished photos.
+     *
+     * @param array $sources
+     *
+     * @return array
+     */
+    protected function unpublishedPhotos(array $sources)
+    {
+        $images = [];
+
+        foreach ($sources as $index => $source) {
+            $response = $this->fb
+                ->post('/me/photos', [
+                    'source' => new FacebookFile($source),
+                    'published' => false,
+                ])
+                ->getDecodedBody();
+
+            $images["attached_media[{$index}]"] = "{\"media_fbid\":\"{$response['id']}\"}";
+        }
+
+        return $images;
+    }
+
+    /**
      * Get facebook response id.
      *
      * @return array|bool

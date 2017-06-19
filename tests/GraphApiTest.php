@@ -42,6 +42,26 @@ class GraphApiTest extends PHPUnit_Framework_TestCase
         $this->assertSame(2, $this->api->setFb($fb)->photo(__DIR__.'/image.jpg')->getResponse());
     }
 
+    public function test_photos()
+    {
+        $fb = m::mock('StdClass');
+
+        $fb->shouldReceive('post')->times(4)->andReturn(new class {
+            public function getDecodedBody() {
+                static $count = 1;
+
+                return ['id' => $count++];
+            }
+        });
+
+        $photos = [__DIR__.'/image.jpg', __DIR__.'/image.jpg', __DIR__.'/image.jpg'];
+
+        $body = $this->api->setFb($fb)->photos($photos)->getResponse()->getDecodedBody();
+
+        $this->assertArrayHasKey('id', $body);
+        $this->assertSame(4, $body['id']);
+    }
+
     public function test_get_id_if_not_set_response()
     {
         $this->assertFalse($this->api->getId());
