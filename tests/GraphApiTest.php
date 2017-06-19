@@ -2,7 +2,8 @@
 
 use Mockery as m;
 
-class PhotosTesting {
+class PhotosTesting
+{
     public function getDecodedBody()
     {
         static $count = 1;
